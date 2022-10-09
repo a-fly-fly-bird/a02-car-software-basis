@@ -1,1 +1,1 @@
-# a02-car-software-basis
+# A02 智能汽车软件基础代码仓库
