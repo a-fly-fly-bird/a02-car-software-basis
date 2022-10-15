@@ -109,20 +109,32 @@ ostream &operator<<(ostream &os, const BindInfo &bindInfo)
               << *bindInfo.getSmartCar() << endl;
 }
 
+void fileEmpty(string fileName)
+{
+    fstream file(fileName, ios::out);
+    return;
+}
+
 bool saveMap(string filename)
 {
     formatDivision("开始保存数据到文件", '*', 100);
+    fileEmpty(filename);
     ofstream of;
-    of.open(filename);
+    of.open(filename, ios::app);
     of << purchaseAmount - availableAmount << endl;
+    of.close();
     map<string, BindInfo *>::iterator iter;
     iter = bindMap.begin();
     while (iter != bindMap.end())
     {
-        of << iter->first << ' ' << *iter->second << endl;
+        // of.open(filename, ios::app);
+        // of << iter->first << endl;
+        // of.close();
+        iter->second->save(filename);
+        // << *iter->second << endl;
         iter++;
     }
-    of.close();
+
     formatDivision("保存成功", '*', 100);
 }
 
@@ -447,12 +459,22 @@ void Student::setName(const string &name)
     Student::name = name;
 }
 
-void Student::print(){
+void Student::print()
+{
     cout << *this << endl;
 }
 
-bool save(){
-
+bool Student::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }
 
 const string &Underpan::getId() const
@@ -555,8 +577,22 @@ void Underpan::setTireSize(double tireSize)
     Underpan::tireSize = tireSize;
 }
 
-void Underpan::print(){
+void Underpan::print()
+{
     cout << *this << endl;
+}
+
+bool Underpan::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }
 
 const string &AGXKits::getModel() const
@@ -619,8 +655,22 @@ void AGXKits::setStorage(double storage)
     AGXKits::storage = storage;
 }
 
-void AGXKits::print(){
+void AGXKits::print()
+{
     cout << *this << endl;
+}
+
+bool AGXKits::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }
 
 const string &BinocularCamera::getModel() const
@@ -683,8 +733,22 @@ void BinocularCamera::setFrameRateOfDepth(double frameRateOfDepth)
     BinocularCamera::frameRateOfDepth = frameRateOfDepth;
 }
 
-void BinocularCamera::print(){
+void BinocularCamera::print()
+{
     cout << *this << endl;
+}
+
+bool BinocularCamera::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }
 
 const string &LiDAR::getModel() const
@@ -727,8 +791,22 @@ void LiDAR::setPower(double power)
     LiDAR::power = power;
 }
 
-void LiDAR::print(){
+void LiDAR::print()
+{
     cout << *this << endl;
+}
+
+bool LiDAR::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }
 
 const string &Gyroscope::getModel() const
@@ -751,8 +829,22 @@ void Gyroscope::setBrand(const string &brand)
     Gyroscope::brand = brand;
 }
 
-void Gyroscope::print(){
+void Gyroscope::print()
+{
     cout << *this << endl;
+}
+
+bool Gyroscope::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }
 
 const string &LCD::getModel() const
@@ -775,8 +867,22 @@ void LCD::setSize(double size)
     LCD::size = size;
 }
 
-void LCD::print(){
+void LCD::print()
+{
     cout << *this << endl;
+}
+
+bool LCD::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }
 
 const string &BatteryModule::getParameter() const
@@ -809,8 +915,22 @@ void BatteryModule::setChargeTime(double chargeTime)
     BatteryModule::chargeTime = chargeTime;
 }
 
-void BatteryModule::print(){
+void BatteryModule::print()
+{
     cout << *this << endl;
+}
+
+bool BatteryModule::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }
 
 Student *BindInfo::getStudent() const
@@ -833,10 +953,38 @@ void BindInfo::setSmartCar(SmartCar *smartCar)
     BindInfo::smartCar = smartCar;
 }
 
-void BindInfo::print(){
+void BindInfo::print()
+{
     cout << *this << endl;
 }
 
-void SmartCar::print(){
+bool BindInfo::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
+}
+
+void SmartCar::print()
+{
     cout << *this << endl;
+}
+
+bool SmartCar::save(string filename)
+{
+    ofstream out(filename, ios::app);
+    if (!out.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return false;
+    }
+    out << *this << endl;
+    out.close();
+    return true;
 }

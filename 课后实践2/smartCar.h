@@ -33,7 +33,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 // 底盘
@@ -104,7 +104,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 // AGX套件
@@ -151,7 +151,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 // 双目摄像头
@@ -198,7 +198,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 // 多线激光雷达
@@ -233,7 +233,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 // 9轴陀螺仪
@@ -256,7 +256,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 // 液晶显示屏
@@ -279,7 +279,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 // 电池模块
@@ -308,7 +308,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 // 智能小车
@@ -334,7 +334,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 class BindInfo
@@ -354,7 +354,7 @@ public:
 
     void print();
 
-    bool save();
+    bool save(string filename);
 };
 
 ostream &operator<<(ostream &, const Student &);
