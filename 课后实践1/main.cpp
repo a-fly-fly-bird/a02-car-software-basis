@@ -9,14 +9,16 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     auto *smartCars = inputInformation();
     auto *students = inputStudents();
     auto *bindInfos = new BindInfo[purchaseAmount];
     bind(students, smartCars, bindInfos);
     mapBind(bindInfos);
     string stuId = "";
-    while (stuId != "-1") {  // 输入没有结束，cin 就返回 true，条件就为真
+    while (stuId != "-1")
+    { // 输入没有结束，cin 就返回 true，条件就为真
         cout << "请输入学号查询绑定信息:" << endl;
         cin >> stuId;
         getBindInfo(stuId);

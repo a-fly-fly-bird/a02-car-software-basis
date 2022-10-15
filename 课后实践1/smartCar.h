@@ -14,7 +14,8 @@ using namespace std;
 extern int purchaseAmount;
 
 // 学生信息
-struct Student {
+struct Student
+{
     // 学号
     string id;
     // 姓名
@@ -22,7 +23,8 @@ struct Student {
 };
 
 // 底盘
-struct Underpan {
+struct Underpan
+{
     // 编号：dp打头的8位数字+字母
     string id;
     // 型号
@@ -46,7 +48,8 @@ struct Underpan {
 };
 
 // AGX套件
-struct AGXKits {
+struct AGXKits
+{
     // 型号
     string model;
     // AI
@@ -62,7 +65,8 @@ struct AGXKits {
 };
 
 // 双目摄像头
-struct BinocularCamera {
+struct BinocularCamera
+{
     // 型号
     string model;
     // 摄像头
@@ -78,7 +82,8 @@ struct BinocularCamera {
 };
 
 // 多线激光雷达
-struct LiDAR {
+struct LiDAR
+{
     // 型号
     string model;
     // 通道数
@@ -90,7 +95,8 @@ struct LiDAR {
 };
 
 // 9轴陀螺仪
-struct Gyroscope {
+struct Gyroscope
+{
     // 型号
     string model;
     // 厂家
@@ -98,7 +104,8 @@ struct Gyroscope {
 };
 
 // 液晶显示屏
-struct LCD {
+struct LCD
+{
     // 型号
     string model;
     // 尺寸
@@ -106,7 +113,8 @@ struct LCD {
 };
 
 // 电池模块
-struct BatteryModule {
+struct BatteryModule
+{
     // 参数
     string parameter;
     // 对外供电
@@ -116,7 +124,8 @@ struct BatteryModule {
 };
 
 // 智能小车
-struct SmartCar {
+struct SmartCar
+{
     // 自定义，cqusn打头的16位数字+字母
     string id;
     // 底座
@@ -135,7 +144,8 @@ struct SmartCar {
     BatteryModule batteryModule;
 };
 
-struct BindInfo {
+struct BindInfo
+{
     Student *student;
     SmartCar *smartCar;
 };
@@ -182,15 +192,15 @@ int checkIfNum(string input);
 
 string readInfoFromFileLineM2N(const string &, int, int);
 
-void formatDivision(const string&, char, int);
+void formatDivision(const string &, char, int);
 
 double doubleInputInformationHelper(const string &requestInfo, double min = numeric_limits<double>::min(),
-                                    const string& errorMsg = "信息输入超出规定范围",
+                                    const string &errorMsg = "信息输入超出规定范围",
                                     double max = numeric_limits<double>::max());
 
-template<class T>
+template <class T>
 // 默认参数不能在声明和定义中同时出现，所以最好在声明中出现。
 T checkInputRange(T input, T min = numeric_limits<T>::min(), string errorMsg = "输入超出规定范围",
                   T max = numeric_limits<T>::max());
 
-#endif //HOMEWORK_1_SMARTCAR_H
+#endif // HOMEWORK_1_SMARTCAR_H
