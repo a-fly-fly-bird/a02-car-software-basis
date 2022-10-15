@@ -10,6 +10,8 @@
         "__split_buffer": "cpp",
         "deque": "cpp",
         "string": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "__bit_reference": "cpp",
+        "filesystem": "cpp"
     }
 }
