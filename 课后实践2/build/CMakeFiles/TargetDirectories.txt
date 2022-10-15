@@ -1,0 +1,3 @@
+/Users/tanyong/Documents/School/大四上/A02-车载软件开发基础/code/课后实践2/build/CMakeFiles/homework_1.dir
+/Users/tanyong/Documents/School/大四上/A02-车载软件开发基础/code/课后实践2/build/CMakeFiles/edit_cache.dir
+/Users/tanyong/Documents/School/大四上/A02-车载软件开发基础/code/课后实践2/build/CMakeFiles/rebuild_cache.dir
