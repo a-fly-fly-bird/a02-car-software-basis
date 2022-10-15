@@ -13,6 +13,8 @@
         "map": "cpp",
         "__bit_reference": "cpp",
         "filesystem": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "iosfwd": "cpp",
+        "ostream": "cpp"
     }
 }

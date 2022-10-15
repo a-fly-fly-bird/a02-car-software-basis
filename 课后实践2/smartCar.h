@@ -14,12 +14,14 @@ using namespace std;
 extern int purchaseAmount;
 
 // 学生信息
-class Student {
+class Student
+{
 private:
     // 学号
     string id;
     // 姓名
     string name;
+
 public:
     const string &getId() const;
 
@@ -28,10 +30,15 @@ public:
     const string &getName() const;
 
     void setName(const string &name);
+
+    void print();
+
+    bool save();
 };
 
 // 底盘
-class Underpan {
+class Underpan
+{
 private:
     // 编号：dp打头的8位数字+字母
     string id;
@@ -53,6 +60,7 @@ private:
     string tireModel;
     // 轮胎尺寸
     double tireSize;
+
 public:
     const string &getId() const;
 
@@ -93,10 +101,15 @@ public:
     double getTireSize() const;
 
     void setTireSize(double tireSize);
+
+    void print();
+
+    bool save();
 };
 
 // AGX套件
-class AGXKits {
+class AGXKits
+{
 private:
     // 型号
     string model;
@@ -110,6 +123,7 @@ private:
     double memory;
     // 外存
     double storage;
+
 public:
     const string &getModel() const;
 
@@ -134,10 +148,15 @@ public:
     double getStorage() const;
 
     void setStorage(double storage);
+
+    void print();
+
+    bool save();
 };
 
 // 双目摄像头
-class BinocularCamera {
+class BinocularCamera
+{
 private:
     // 型号
     string model;
@@ -151,6 +170,7 @@ private:
     string FOV;
     // 深度帧率
     double frameRateOfDepth;
+
 public:
     const string &getModel() const;
 
@@ -175,10 +195,15 @@ public:
     double getFrameRateOfDepth() const;
 
     void setFrameRateOfDepth(double frameRateOfDepth);
+
+    void print();
+
+    bool save();
 };
 
 // 多线激光雷达
-class LiDAR {
+class LiDAR
+{
 private:
     // 型号
     string model;
@@ -188,6 +213,7 @@ private:
     double testScope;
     // 功耗
     double power;
+
 public:
     const string &getModel() const;
 
@@ -204,15 +230,21 @@ public:
     double getPower() const;
 
     void setPower(double power);
+
+    void print();
+
+    bool save();
 };
 
 // 9轴陀螺仪
-class Gyroscope {
+class Gyroscope
+{
 private:
     // 型号
     string model;
     // 厂家
     string brand;
+
 public:
     const string &getModel() const;
 
@@ -221,15 +253,21 @@ public:
     const string &getBrand() const;
 
     void setBrand(const string &brand);
+
+    void print();
+
+    bool save();
 };
 
 // 液晶显示屏
-class LCD {
+class LCD
+{
 private:
     // 型号
     string model;
     // 尺寸
     double size;
+
 public:
     const string &getModel() const;
 
@@ -238,10 +276,15 @@ public:
     double getSize() const;
 
     void setSize(double size);
+
+    void print();
+
+    bool save();
 };
 
 // 电池模块
-class BatteryModule {
+class BatteryModule
+{
 private:
     // 参数
     string parameter;
@@ -249,6 +292,7 @@ private:
     double externalPowerSupply;
     // 充电时间
     double chargeTime;
+
 public:
     const string &getParameter() const;
 
@@ -261,10 +305,15 @@ public:
     double getChargeTime() const;
 
     void setChargeTime(double chargeTime);
+
+    void print();
+
+    bool save();
 };
 
 // 智能小车
-class SmartCar {
+class SmartCar
+{
 public:
     // 自定义，cqusn打头的16位数字+字母
     string id;
@@ -282,12 +331,18 @@ public:
     LCD lcd;
     // 电池模块
     BatteryModule batteryModule;
+
+    void print();
+
+    bool save();
 };
 
-class BindInfo {
+class BindInfo
+{
 private:
     Student *student;
     SmartCar *smartCar;
+
 public:
     Student *getStudent() const;
 
@@ -296,6 +351,10 @@ public:
     SmartCar *getSmartCar() const;
 
     void setSmartCar(SmartCar *smartCar);
+
+    void print();
+
+    bool save();
 };
 
 ostream &operator<<(ostream &, const Student &);
@@ -340,15 +399,15 @@ int checkIfNum(string input);
 
 string readInfoFromFileLineM2N(const string &, int, int);
 
-void formatDivision(const string&, char, int);
+void formatDivision(const string &, char, int);
 
 double doubleInputInformationHelper(const string &requestInfo, double min = numeric_limits<double>::min(),
-                                    const string& errorMsg = "信息输入超出规定范围",
+                                    const string &errorMsg = "信息输入超出规定范围",
                                     double max = numeric_limits<double>::max());
 
-template<class T>
+template <class T>
 // 默认参数不能在声明和定义中同时出现，所以最好在声明中出现。
 T checkInputRange(T input, T min = numeric_limits<T>::min(), string errorMsg = "输入超出规定范围",
                   T max = numeric_limits<T>::max());
 
-#endif //HOMEWORK_1_SMARTCAR_H
+#endif // HOMEWORK_1_SMARTCAR_H
