@@ -1,14 +1,5 @@
-#include <iostream>
-#include <string>
-#include <map>
 #include <fstream>
-#include <ctime>
-#include <iostream>
 #include <unistd.h>
-#include <string>
-#include <limits>
-#include "printable.h"
-#include "saveable.h"
 #include "smart_car.h"
 #include "student.h"
 #include "bind_info.h"
@@ -54,12 +45,12 @@ bool BindInfo::Save(const string &filename) const
     return true;
 }
 
-ostream &operator<<(ostream &os, const BindInfo &bindInfo)
+ostream &operator<<(ostream &os, const BindInfo &bind_info)
 {
     return os << "绑定的学生信息是：\n"
-              << *bindInfo.GetStudent() << endl
+              << *bind_info.GetStudent() << endl
               << "绑定的智能汽车信息是：\n"
-              << *bindInfo.GetSmartCar() << endl;
+              << *bind_info.GetSmartCar() << endl;
 }
 
 bool saveMap(string filename)
@@ -157,13 +148,13 @@ BindInfo *getBindInfo(const string &stuId)
     }
 }
 
-bool mapBind(BindInfo *bindInfos)
+bool mapBind(BindInfo *bind_infos)
 {
     for (int i = 0; i < kStudentAmount; ++i)
     {
-        if (kBindMap.find(bindInfos[i].GetStudent()->GetId()) == kBindMap.end())
+        if (kBindMap.find(bind_infos[i].GetStudent()->GetId()) == kBindMap.end())
         {
-            kBindMap.insert(pair<string, BindInfo *>(bindInfos[i].GetStudent()->GetId(), &bindInfos[i]));
+            kBindMap.insert(pair<string, BindInfo *>(bind_infos[i].GetStudent()->GetId(), &bind_infos[i]));
         }
         else
         {
@@ -174,14 +165,14 @@ bool mapBind(BindInfo *bindInfos)
     return true;
 }
 
-bool bind(Student *students, SmartCar *smartCars, BindInfo *bindInfos)
+bool bind(Student *students, SmartCar *smartCars, BindInfo *bind_infos)
 {
     for (int i = kPurchaseAmount - kAvailableAmount; i < kPurchaseAmount - kAvailableAmount + kStudentAmount; ++i)
     {
-        bindInfos[i].SetStudent(&students[i]);
-        bindInfos[i].SetSmartCar(&smartCars[i]);
+        bind_infos[i].SetStudent(&students[i]);
+        bind_infos[i].SetSmartCar(&smartCars[i]);
         cout << "绑定信息是：" << endl
-             << bindInfos[i] << endl;
+             << bind_infos[i] << endl;
     }
     kAvailableAmount -= kStudentAmount;
     FormatDivision("绑定完成", '*', 100);
