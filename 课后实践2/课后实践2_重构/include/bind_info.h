@@ -8,9 +8,9 @@
 #include <string>
 #include <map>
 
-static int kPurchaseAmount = 0;
-static int kAvailableAmount = 0;
-static int kStudentAmount = 0;
+static int kPurchaseAmount = 100;
+static int kAvailableAmount = 100;
+static int kStudentAmount = 100;
 
 class BindInfo : public Printable, public Saveable
 {

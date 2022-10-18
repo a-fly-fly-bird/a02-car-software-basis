@@ -61,6 +61,7 @@ bool SaveMap(string filename)
     of.open(filename, ios::app);
     of << kPurchaseAmount - kAvailableAmount << endl;
     of.close();
+    cout << "有" << kBindMap.size() << "个数据。" << endl;
     map<string, BindInfo *>::iterator iter;
     iter = kBindMap.begin();
     while (iter != kBindMap.end())
@@ -215,11 +216,11 @@ SmartCar *InputInformation()
     for (int i = 0; i < kPurchaseAmount; ++i)
     {
         // 随机数生成
-        srand((unsigned)time(NULL) * getpid());
+        srand((unsigned)time(nullptr) * getpid());
         string random_gen = GenRandom(11);
         smartCars[i].id_ = "cqusn" + random_gen;
         // 底盘
-        srand((unsigned)time(NULL) * getpid());
+        srand((unsigned)time(nullptr) * getpid());
         random_gen = GenRandom(6);
         smartCars[i].underpan_.SetId("dp" + random_gen);
         smartCars[i].underpan_.SetModel(StringInputInformationHelper(underpan[0]));
