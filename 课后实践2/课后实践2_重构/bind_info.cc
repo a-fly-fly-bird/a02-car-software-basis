@@ -53,7 +53,7 @@ ostream &operator<<(ostream &os, const BindInfo &bind_info)
               << *bind_info.GetSmartCar() << endl;
 }
 
-bool saveMap(string filename)
+bool SaveMap(string filename)
 {
     FormatDivision("开始保存数据到文件", '*', 100);
     fileEmpty(filename);
@@ -76,7 +76,7 @@ bool saveMap(string filename)
     FormatDivision("保存成功", '*', 100);
 }
 
-bool readInfoFromFile(string filename)
+bool ReadInfoFromFile(string filename)
 {
     FormatDivision("开始读取文件中的数据", '*', 100);
     string input;
@@ -131,7 +131,7 @@ bool readInfoFromFile(string filename)
     FormatDivision("读取完毕", '*', 100);
 }
 
-BindInfo *getBindInfo(const string &stuId)
+BindInfo *GetBindInfo(const string &stuId)
 {
     auto iter = kBindMap.find(stuId);
     if (iter != kBindMap.end())
@@ -148,7 +148,7 @@ BindInfo *getBindInfo(const string &stuId)
     }
 }
 
-bool mapBind(BindInfo *bind_infos)
+bool MapBind(BindInfo *bind_infos)
 {
     for (int i = 0; i < kStudentAmount; ++i)
     {
@@ -165,7 +165,7 @@ bool mapBind(BindInfo *bind_infos)
     return true;
 }
 
-bool bind(Student *students, SmartCar *smartCars, BindInfo *bind_infos)
+bool Bind(Student *students, SmartCar *smartCars, BindInfo *bind_infos)
 {
     for (int i = kPurchaseAmount - kAvailableAmount; i < kPurchaseAmount - kAvailableAmount + kStudentAmount; ++i)
     {
@@ -179,7 +179,7 @@ bool bind(Student *students, SmartCar *smartCars, BindInfo *bind_infos)
     return true;
 }
 
-Student *inputStudents()
+Student *InputStudents()
 {
     // https://stackoverflow.com/questions/17335816/clear-screen-using-c
     // clear screen in linux or windows
@@ -199,7 +199,7 @@ Student *inputStudents()
     return students;
 }
 
-SmartCar *inputInformation()
+SmartCar *InputInformation()
 {
     cout << "请输入采购的小车数量：";
     string input;
