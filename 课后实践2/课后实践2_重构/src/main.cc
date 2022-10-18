@@ -11,16 +11,16 @@
 using namespace std;
 
 int main() {
-    auto *smartCars = InputInformation();
+    auto *smart_cars = InputInformation();
     auto *students = InputStudents();
-    auto *bindInfos = new BindInfo[kPurchaseAmount];
-    Bind(students, smartCars, bindInfos);
-    MapBind(bindInfos);
-    string stuId = "";
-    while (stuId != "-1") {  // 输入没有结束，cin 就返回 true，条件就为真
+    auto *bind_infos = new BindInfo[kPurchaseAmount];
+    Bind(students, smart_cars, bind_infos);
+    MapBind(bind_infos);
+    string std_id = "";
+    while (std_id != "-1") {  // 输入没有结束，cin 就返回 true，条件就为真
         cout << "请输入学号查询绑定信息:" << endl;
-        cin >> stuId;
-        GetBindInfo(stuId);
+        cin >> std_id;
+        GetBindInfo(std_id);
     }
     SaveMap("output.txt");
     ReadInfoFromFile("output.txt");

@@ -36,15 +36,15 @@ public:
 
 static std::map<std::string, BindInfo *> kBindMap;
 
-bool SaveMap(std::string filename);
+bool SaveMap(std::string);
 
-bool ReadInfoFromFile(std::string filename);
+bool ReadInfoFromFile(std::string);
 
-BindInfo *GetBindInfo(const std::string &stuId);
+BindInfo *GetBindInfo(const std::string &);
 
-bool MapBind(BindInfo *bind_infos);
+bool MapBind(BindInfo *);
 
-bool Bind(Student *students, SmartCar *smartCars, BindInfo *bind_infos);
+bool Bind(Student *, SmartCar *, BindInfo *);
 
 Student *InputStudents();
 

@@ -131,9 +131,9 @@ bool ReadInfoFromFile(string filename)
     FormatDivision("读取完毕", '*', 100);
 }
 
-BindInfo *GetBindInfo(const string &stuId)
+BindInfo *GetBindInfo(const string &stu_id)
 {
-    auto iter = kBindMap.find(stuId);
+    auto iter = kBindMap.find(stu_id);
     if (iter != kBindMap.end())
     {
         FormatDivision("绑定信息", '*', 100);
