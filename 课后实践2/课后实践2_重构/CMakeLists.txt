@@ -4,10 +4,16 @@ project(demo)
 
 set(CMAKE_CXX_STANDARD 11)
 
-include_directories(include)
+include_directories(
+        ${PROJECT_SOURCE_DIR}/include
+        ${PROJECT_SOURCE_DIR}/src
+)
 
-FILE(GLOB_RECURSE CURRENT_INCLUDE include/*.h)
+file(GLOB all_SRCS
+        "${PROJECT_SOURCE_DIR}/include/*.h"
+        "${PROJECT_SOURCE_DIR}/include/*.hpp"
+        "${PROJECT_SOURCE_DIR}/src/*.cpp"
+        "${PROJECT_SOURCE_DIR}/src/*.cc"
+        )
 
-FILE(GLOB_RECURSE CURRENT_SOURCES src/*.cc)
-
-add_executable(Demo ${CURRENT_SOURCES} ${CURRENT_INCLUDE})  #制定生成目标
+add_executable(Demo ${all_SRCS})

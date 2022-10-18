@@ -187,7 +187,7 @@ Student *InputStudents()
     cout << "请输入需要小车的人数：";
     cin >> kStudentAmount;
     string info = "输入不是正数，或者超出了可用的小车的范围。请重新输入：";
-    // kStudentAmount = CheckInputRange(kStudentAmount, 0, info, kAvailableAmount);
+    kStudentAmount = CheckInputRange(kStudentAmount, 0, info, kAvailableAmount);
     auto *students = new Student[kStudentAmount];
     for (int i = 0; i < kStudentAmount; ++i)
     {

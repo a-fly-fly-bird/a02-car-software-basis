@@ -24,8 +24,32 @@ string readInfoFromFileLineM2N(const string &filename, int begin, int end)
 }
 
 // 检查数字是否超出范围
-template <class T>
-T CheckInputRange(T input, T min, string errorMsg, T max)
+// template <class T>
+// T CheckInputRange(T input, T min, string errorMsg, T max)
+// {
+//     if (input > max || input < min)
+//     {
+//         cout << errorMsg;
+//         cin >> input;
+//         input = CheckInputRange(input, min, errorMsg, max);
+//     }
+//     return input;
+// }
+
+int CheckInputRange(int input, int min, std::string errorMsg,
+                    int max)
+{
+    if (input > max || input < min)
+    {
+        cout << errorMsg;
+        cin >> input;
+        input = CheckInputRange(input, min, errorMsg, max);
+    }
+    return input;
+}
+
+double CheckInputRange(double input, double min, std::string errorMsg,
+                    double max)
 {
     if (input > max || input < min)
     {
