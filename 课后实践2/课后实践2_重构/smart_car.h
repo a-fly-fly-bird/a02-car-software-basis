@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include "printable.h"
+#include "saveable.h"
 
 // 底盘
-class Underpan
+class Underpan : public Printable, public Saveable
 {
 private:
     // 编号：dp打头的8位数字+字母
@@ -70,15 +72,15 @@ public:
 
     void SetTireSize(double);
 
-    void Print() const;
+    void Print() const override;
 
-    bool Save(std::string &) const;
+    bool Save(const std::string &) const override;
 
     friend std::ostream &operator<<(std::ostream &, const Underpan &);
 };
 
 // AGX套件
-class AgxKits
+class AgxKits : public Printable, public Saveable
 {
 private:
     // 型号
@@ -119,15 +121,15 @@ public:
 
     void SetStorage(double);
 
-    void Print() const;
+    void Print() const override;
 
-    bool Save(std::string &) const;
+    bool Save(const std::string &) const override;
 
     friend std::ostream &operator<<(std::ostream &, const AgxKits &);
 };
 
 // 双目摄像头
-class BinocularCamera
+class BinocularCamera : public Printable, public Saveable
 {
 private:
     // 型号
@@ -168,15 +170,15 @@ public:
 
     void SetFrameRateOfDepth(double);
 
-    void Print() const;
+    void Print() const override;
 
-    bool Save(std::string) const;
+    bool Save(const std::string &) const override;
 
     friend std::ostream &operator<<(std::ostream &, const BinocularCamera &);
 };
 
 // 多线激光雷达
-class LiDar
+class LiDar : public Printable, public Saveable
 {
 private:
     // 型号
@@ -205,15 +207,15 @@ public:
 
     void SetPower(double);
 
-    void Print() const;
+    void Print() const override;
 
-    bool Save(std::string &) const;
+    bool Save(const std::string &) const override;
 
     friend std::ostream &operator<<(std::ostream &, const LiDar &);
 };
 
 // 9轴陀螺仪
-class Gyroscope
+class Gyroscope : public Printable, public Saveable
 {
 private:
     // 型号
@@ -230,15 +232,15 @@ public:
 
     void SetBrand(const std::string &);
 
-    void Print() const;
+    void Print() const override;
 
-    bool Save(std::string &) const;
+    bool Save(const std::string &) const override;
 
-    friend std::ostream &operator<<(std::ostream os, const Gyroscope &);
+    friend std::ostream &operator<<(std::ostream &, const Gyroscope &);
 };
 
 // 液晶显示屏
-class LcdScreen
+class LcdScreen : public Printable, public Saveable
 {
 private:
     // 型号
@@ -255,15 +257,15 @@ public:
 
     void SetSize(double);
 
-    void Print() const;
+    void Print() const override;
 
-    bool Save(std::string &) const;
+    bool Save(const std::string &) const override;
 
     friend std::ostream &operator<<(std::ostream &, const LcdScreen &);
 };
 
 // 电池模块
-class BatteryModule
+class BatteryModule : public Printable, public Saveable
 {
 private:
     // 参数
@@ -286,15 +288,15 @@ public:
 
     void SetChargeTime(double);
 
-    void Print() const;
+    void Print() const override;
 
-    bool Save(std::string &) const;
+    bool Save(const std::string &) const override;
 
     friend std::ostream &operator<<(std::ostream &, const BatteryModule &);
 };
 
 // 智能小车
-class SmartCar
+class SmartCar : public Printable, public Saveable
 {
 public:
     // 自定义，cqusn打头的16位数字+字母
@@ -314,9 +316,9 @@ public:
     // 电池模块
     BatteryModule battery_module_;
 
-    void Print() const;
+    void Print() const override;
 
-    bool Save(std::string &) const;
+    bool Save(const std::string &) const override;
 
     friend std::ostream &operator<<(std::ostream &, const SmartCar &);
 };

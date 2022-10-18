@@ -439,6 +439,7 @@ void formatDivision(const string &info, char divisionChar, int numOfDivChar)
     cout << endl;
 }
 
+// ----------------------------------------------------------------------------------------------------------------------------------
 const string &Student::getId() const
 {
     return id;

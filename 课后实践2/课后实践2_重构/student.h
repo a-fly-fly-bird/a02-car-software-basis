@@ -3,10 +3,12 @@
 
 #include <iostream>
 #include <string>
+#include "printable.h"
+#include "saveable.h"
 
 // .h should not use namespace
 // 学生信息
-class Student
+class Student: public Printable, public Saveable
 {
 private:
     // 根据Google命名规范，类属性以_结尾
