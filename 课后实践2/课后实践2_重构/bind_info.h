@@ -11,7 +11,8 @@
 static int kPurchaseAmount = 0;
 static int kAvailableAmount = 0;
 static int kStudentAmount = 0;
-static std::map<std::string, BindInfo *> bindMap;
+
+static std::map<std::string, BindInfo *> kBindMap;
 
 class BindInfo : public Printable, public Saveable
 {

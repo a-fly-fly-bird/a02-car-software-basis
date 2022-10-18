@@ -1,10 +1,31 @@
 #include <iostream>
+#include<fstream>
 #include "helper_function.h"
 using namespace std;
 
+string readInfoFromFileLineM2N(const string &filename, int begin, int end)
+{
+    string rawLine;
+    string content;
+    ifstream infile;
+    infile.open(filename);
+    for (int i = 0; i < begin;)
+    {
+        if (infile.get() == '\n')
+            i++;
+    }
+    for (int i = begin; i < end; ++i)
+    {
+        getline(infile, rawLine);
+        content += rawLine + "\n";
+    }
+    infile.close();
+    return content;
+}
+
 // 检查数字是否超出范围
 template <class T>
-T &CheckInputRange(T input, const T &min, const std::string &errorMsg, const T &max)
+T CheckInputRange(T input, T min, string &errorMsg, T max)
 {
     if (input > max || input < min)
     {
@@ -15,7 +36,7 @@ T &CheckInputRange(T input, const T &min, const std::string &errorMsg, const T &
     return input;
 }
 
-int CheckIfNum(std::string input)
+int CheckIfNum(string input)
 {
     int res;
     try
@@ -31,7 +52,7 @@ int CheckIfNum(std::string input)
     return res;
 }
 
-std::string StringInputInformationHelper(const std::string &requestInfo)
+string StringInputInformationHelper(const string &requestInfo)
 {
     cout << "请输入" << requestInfo << "信息：";
     string info;
@@ -39,7 +60,7 @@ std::string StringInputInformationHelper(const std::string &requestInfo)
     return info;
 }
 
-double DoubleInputInformationHelper(const std::string &requestInfo, const double min, const std::string &errorMsg, const double max)
+double DoubleInputInformationHelper(const string &requestInfo, const double min, const string &errorMsg, const double max)
 {
     cout << "请输入" << requestInfo << "信息：";
     string info;
@@ -90,4 +111,10 @@ void FormatDivision(const std::string &info, const char divisionChar, const int 
         cout << divisionChar;
     }
     cout << endl;
+}
+
+void fileEmpty(const string& fileName)
+{
+    fstream file(fileName, ios::out);
+    return;
 }

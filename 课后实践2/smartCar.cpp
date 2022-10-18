@@ -22,99 +22,6 @@ int availableAmount = 0;
 int studentAmount = 0;
 map<string, BindInfo *> bindMap;
 
-ostream &operator<<(ostream &os, const Student &student)
-{
-    return os << "学生的编号是：" << student.getId() << endl
-              << "姓名是：" << student.getName() << endl;
-}
-
-ostream &operator<<(ostream &os, const Underpan &underpan)
-{
-    return os << "底盘的编号是：" << underpan.getId() << endl
-              << "型号是：" << underpan.getModel() << endl
-              << "轴距是: " << underpan.getWheelBase() << " mm" << endl
-              << "轮距是: " << underpan.getAxleTrack() << " mm" << endl
-              << "最小离地间隙是：" << underpan.getGroundClearance() << " mm" << endl
-              << "最小转弯半径是：" << underpan.getMinimumBendingRadius() << " m" << endl
-              << "驱动形式是：" << underpan.getDriveForm() << endl
-              << "最大行程是：" << underpan.getBatteryLife() << " km" << endl
-              << "轮胎型号是：" << underpan.getTireModel() << endl
-              << "轮胎尺寸是：" << underpan.getTireSize() << " mm" << endl;
-}
-
-ostream &operator<<(ostream &os, const AGXKits &aGXKits)
-{
-    return os << "AGX组件的型号是：" << aGXKits.getModel() << endl
-              << "AI是：" << aGXKits.getAiHashrate() << " TOPS" << endl
-              << "CUDA核心是：" << aGXKits.getCudaCoreNum() << endl
-              << "Tensor CORE是：" << aGXKits.getTensorCore() << endl
-              << "显存是：" << aGXKits.getMemory() << " G" << endl
-              << "存储是：" << aGXKits.getStorage() << " G" << endl;
-}
-
-ostream &operator<<(ostream &os, const BinocularCamera &binocularCamera)
-{
-    return os << "双目摄像机的型号是：" << binocularCamera.getModel() << endl
-              << "摄像头是：" << binocularCamera.getCamera() << endl
-              << "RGB帧分辨率是：" << binocularCamera.getRgbFrameResolution() << endl
-              << "RGB帧率是：" << binocularCamera.getRgbFramRate() << endl
-              << "FOV是：" << binocularCamera.getFov() << endl
-              << "深度帧率是：" << binocularCamera.getFrameRateOfDepth() << endl;
-}
-
-ostream &operator<<(ostream &os, const LiDAR &liDAR)
-{
-    return os << "激光雷达的型号是：" << liDAR.getModel() << endl
-              << "通道数是：" << liDAR.getChannelNumber() << endl
-              << "测试范围是：" << liDAR.getTestScope() << " m" << endl
-              << "功耗是：" << liDAR.getPower() << " w" << endl;
-}
-
-ostream &operator<<(ostream &os, const Gyroscope &gyroscope)
-{
-    return os << "陀螺仪的型号是：" << gyroscope.getModel() << endl
-              << "厂商是：" << gyroscope.getBrand() << endl;
-}
-
-ostream &operator<<(ostream &os, const LCD &lcd)
-{
-    return os << "液晶显示屏的型号是：" << lcd.getModel() << endl
-              << "尺寸是：" << lcd.getSize() << endl;
-}
-
-ostream &operator<<(ostream &os, const BatteryModule &batteryModule)
-{
-    return os << "电池模组的参数是：" << batteryModule.getParameter() << endl
-              << "对外供电是：" << batteryModule.getExternalPowerSupply() << " V" << endl
-              << "充电时间是：" << batteryModule.getChargeTime() << " H" << endl;
-}
-
-ostream &operator<<(ostream &os, const SmartCar &smartCar)
-{
-    return os << "智能小车的编号是：" << smartCar.id << endl
-              << smartCar.underpan << endl
-              << smartCar.aGXKits << endl
-              << smartCar.binocularCamera << endl
-              << smartCar.liDAR << endl
-              << smartCar.gyroscope << endl
-              << smartCar.lcd << endl
-              << smartCar.batteryModule << endl;
-}
-
-ostream &operator<<(ostream &os, const BindInfo &bindInfo)
-{
-    return os << "绑定的学生信息是：\n"
-              << *bindInfo.getStudent() << endl
-              << "绑定的智能汽车信息是：\n"
-              << *bindInfo.getSmartCar() << endl;
-}
-
-void fileEmpty(string fileName)
-{
-    fstream file(fileName, ios::out);
-    return;
-}
-
 bool saveMap(string filename)
 {
     formatDivision("开始保存数据到文件", '*', 100);
@@ -191,26 +98,6 @@ bool readInfoFromFile(string filename)
         }
     }
     formatDivision("读取完毕", '*', 100);
-}
-
-string readInfoFromFileLineM2N(const string &filename, int begin, int end)
-{
-    string rawLine;
-    string content;
-    ifstream infile;
-    infile.open(filename);
-    for (int i = 0; i < begin;)
-    {
-        if (infile.get() == '\n')
-            i++;
-    }
-    for (int i = begin; i < end; ++i)
-    {
-        getline(infile, rawLine);
-        content += rawLine + "\n";
-    }
-    infile.close();
-    return content;
 }
 
 BindInfo *getBindInfo(const string &stuId)
@@ -349,6 +236,35 @@ SmartCar *inputInformation()
     return smartCars;
 }
 
+
+// ----------------------------------------------------------------------------------------------------------------------------------
+
+void fileEmpty(string fileName)
+{
+    fstream file(fileName, ios::out);
+    return;
+}
+
+string readInfoFromFileLineM2N(const string &filename, int begin, int end)
+{
+    string rawLine;
+    string content;
+    ifstream infile;
+    infile.open(filename);
+    for (int i = 0; i < begin;)
+    {
+        if (infile.get() == '\n')
+            i++;
+    }
+    for (int i = begin; i < end; ++i)
+    {
+        getline(infile, rawLine);
+        content += rawLine + "\n";
+    }
+    infile.close();
+    return content;
+}
+
 // 检查数字是否超出范围
 template <class T>
 T checkInputRange(T input, T min, string errorMsg, T max)
@@ -439,7 +355,6 @@ void formatDivision(const string &info, char divisionChar, int numOfDivChar)
     cout << endl;
 }
 
-// ----------------------------------------------------------------------------------------------------------------------------------
 const string &Student::getId() const
 {
     return id;
@@ -988,4 +903,91 @@ bool SmartCar::save(string filename)
     out << *this << endl;
     out.close();
     return true;
+}
+
+ostream &operator<<(ostream &os, const Student &student)
+{
+    return os << "学生的编号是：" << student.getId() << endl
+              << "姓名是：" << student.getName() << endl;
+}
+
+ostream &operator<<(ostream &os, const Underpan &underpan)
+{
+    return os << "底盘的编号是：" << underpan.getId() << endl
+              << "型号是：" << underpan.getModel() << endl
+              << "轴距是: " << underpan.getWheelBase() << " mm" << endl
+              << "轮距是: " << underpan.getAxleTrack() << " mm" << endl
+              << "最小离地间隙是：" << underpan.getGroundClearance() << " mm" << endl
+              << "最小转弯半径是：" << underpan.getMinimumBendingRadius() << " m" << endl
+              << "驱动形式是：" << underpan.getDriveForm() << endl
+              << "最大行程是：" << underpan.getBatteryLife() << " km" << endl
+              << "轮胎型号是：" << underpan.getTireModel() << endl
+              << "轮胎尺寸是：" << underpan.getTireSize() << " mm" << endl;
+}
+
+ostream &operator<<(ostream &os, const AGXKits &aGXKits)
+{
+    return os << "AGX组件的型号是：" << aGXKits.getModel() << endl
+              << "AI是：" << aGXKits.getAiHashrate() << " TOPS" << endl
+              << "CUDA核心是：" << aGXKits.getCudaCoreNum() << endl
+              << "Tensor CORE是：" << aGXKits.getTensorCore() << endl
+              << "显存是：" << aGXKits.getMemory() << " G" << endl
+              << "存储是：" << aGXKits.getStorage() << " G" << endl;
+}
+
+ostream &operator<<(ostream &os, const BinocularCamera &binocularCamera)
+{
+    return os << "双目摄像机的型号是：" << binocularCamera.getModel() << endl
+              << "摄像头是：" << binocularCamera.getCamera() << endl
+              << "RGB帧分辨率是：" << binocularCamera.getRgbFrameResolution() << endl
+              << "RGB帧率是：" << binocularCamera.getRgbFramRate() << endl
+              << "FOV是：" << binocularCamera.getFov() << endl
+              << "深度帧率是：" << binocularCamera.getFrameRateOfDepth() << endl;
+}
+
+ostream &operator<<(ostream &os, const LiDAR &liDAR)
+{
+    return os << "激光雷达的型号是：" << liDAR.getModel() << endl
+              << "通道数是：" << liDAR.getChannelNumber() << endl
+              << "测试范围是：" << liDAR.getTestScope() << " m" << endl
+              << "功耗是：" << liDAR.getPower() << " w" << endl;
+}
+
+ostream &operator<<(ostream &os, const Gyroscope &gyroscope)
+{
+    return os << "陀螺仪的型号是：" << gyroscope.getModel() << endl
+              << "厂商是：" << gyroscope.getBrand() << endl;
+}
+
+ostream &operator<<(ostream &os, const LCD &lcd)
+{
+    return os << "液晶显示屏的型号是：" << lcd.getModel() << endl
+              << "尺寸是：" << lcd.getSize() << endl;
+}
+
+ostream &operator<<(ostream &os, const BatteryModule &batteryModule)
+{
+    return os << "电池模组的参数是：" << batteryModule.getParameter() << endl
+              << "对外供电是：" << batteryModule.getExternalPowerSupply() << " V" << endl
+              << "充电时间是：" << batteryModule.getChargeTime() << " H" << endl;
+}
+
+ostream &operator<<(ostream &os, const SmartCar &smartCar)
+{
+    return os << "智能小车的编号是：" << smartCar.id << endl
+              << smartCar.underpan << endl
+              << smartCar.aGXKits << endl
+              << smartCar.binocularCamera << endl
+              << smartCar.liDAR << endl
+              << smartCar.gyroscope << endl
+              << smartCar.lcd << endl
+              << smartCar.batteryModule << endl;
+}
+
+ostream &operator<<(ostream &os, const BindInfo &bindInfo)
+{
+    return os << "绑定的学生信息是：\n"
+              << *bindInfo.getStudent() << endl
+              << "绑定的智能汽车信息是：\n"
+              << *bindInfo.getSmartCar() << endl;
 }
