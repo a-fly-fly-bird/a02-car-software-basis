@@ -1,5 +1,5 @@
 #include <iostream>
-#include<fstream>
+#include <fstream>
 #include "helper_function.h"
 using namespace std;
 
@@ -25,13 +25,13 @@ string readInfoFromFileLineM2N(const string &filename, int begin, int end)
 
 // 检查数字是否超出范围
 template <class T>
-T CheckInputRange(T input, T min, string &errorMsg, T max)
+T CheckInputRange(T input, T min, string errorMsg, T max)
 {
     if (input > max || input < min)
     {
         cout << errorMsg;
         cin >> input;
-        input = checkInputRange(input, min, errorMsg, max);
+        input = CheckInputRange(input, min, errorMsg, max);
     }
     return input;
 }
@@ -60,7 +60,7 @@ string StringInputInformationHelper(const string &requestInfo)
     return info;
 }
 
-double DoubleInputInformationHelper(const string &requestInfo, const double min, const string &errorMsg, const double max)
+double DoubleInputInformationHelper(string requestInfo, double min, string errorMsg, double max)
 {
     cout << "请输入" << requestInfo << "信息：";
     string info;
@@ -113,7 +113,7 @@ void FormatDivision(const std::string &info, const char divisionChar, const int 
     cout << endl;
 }
 
-void fileEmpty(const string& fileName)
+void fileEmpty(const string &fileName)
 {
     fstream file(fileName, ios::out);
     return;

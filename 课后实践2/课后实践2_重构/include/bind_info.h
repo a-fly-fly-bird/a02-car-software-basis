@@ -5,9 +5,8 @@
 #include "saveable.h"
 #include "smart_car.h"
 #include "student.h"
-#include "helper_function.h"
-#include<string>
-#include<map>
+#include <string>
+#include <map>
 
 static int kPurchaseAmount = 0;
 static int kAvailableAmount = 0;
